@@ -31,40 +31,26 @@ const cards = [
 export const CardNavigation = () => {
   const [indexCard, setIndexCard] = useState(1)
   const [showCard, setShowCard] = useState(cards[0])
-  const [timeToNextCard, setTimeToNextCard] = useState(3000)
 
   const handleShowCard = (index) => {
-    const currentCard = cards.filter((card) => card.index === index)[0]
+    const currentCard = cards.find((card) => card.index === index)
     setShowCard(currentCard)
   }
 
-  const resetCardOnClick = (index) => {
+  const selectCard = (index) => {
     setIndexCard(index)
-    setTimeToNextCard(3000)
   }
 
   const renderDots = () => {
     const cardsDots = cards.map(card => (
       <Dots
         key={card.index}
-        onClick={() => resetCardOnClick(card.index)}
+        onClick={() => selectCard(card.index)}
         className={indexCard === card.index ? "active-item" : ""}
       />
     ))
     return cardsDots
   }
-
-  useEffect(() => {
-    if (indexCard !== cards.length) {
-      setTimeout(() => {
-        setIndexCard(indexCard + 1)
-      }, timeToNextCard)
-    } else {
-      setTimeout(() => {
-        setIndexCard(1)
-      }, timeToNextCard)
-    }
-  }, [indexCard, timeToNextCard])
 
   useEffect(() => {
     handleShowCard(indexCard)

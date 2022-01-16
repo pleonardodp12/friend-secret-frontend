@@ -25,6 +25,10 @@ export const Dots = styled.div`
   border-radius: 50%;
   background-color: ${({ theme }) => theme.colors.light};
   border: 3px solid ${({ theme }) => theme.colors.secondary};
+  transition: opacity .2s;
+  &:hover {
+    opacity: 0.7;
+  }
   cursor: pointer;
   &.active-item {
     background-color: ${({ theme }) => theme.colors.secondary};

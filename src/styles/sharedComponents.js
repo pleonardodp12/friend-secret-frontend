@@ -72,7 +72,7 @@ export const MainContainer = styled.div`
 `
 
 export const ContentMiddle = styled.div`
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.primaryLight};
   > h3 {
@@ -85,4 +85,16 @@ export const ParticipantsList = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`
+
+export const WrapperTop = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 240px;
+  }
 `
