@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react'
 import { Button } from '../../src/components/Button'
 import { CircleInformation } from '../../src/components/CircleInformation'
 import { Header } from '../../src/components/Header'
 import { NoContent } from '../../src/components/NoContent'
 import { RoomCode } from '../../src/components/RoomCode'
 import { ParticipantsList } from '../../src/components/ParticipantsList'
+import drawImage from '../../public/img/draw.svg'
 import api from '../../src/services/api'
 
 import {
@@ -13,8 +15,13 @@ import {
 } from '../../src/styles/sharedComponents'
 
 const Secret = ({ participants, hasDrew, isAdmin, id }) => {
+  const [localParticipants, setLocalParticipants] = useState([])
 
-  const hasFriends = participants.length > 0
+  useEffect(() => {
+    setLocalParticipants(participants)
+  }, [])
+
+  const hasFriends = localParticipants.length > 0
   return (
     <MainContainer>
       <Header />
@@ -22,16 +29,29 @@ const Secret = ({ participants, hasDrew, isAdmin, id }) => {
         <WrapperTop>
           <section>
             <h3>Participantes</h3>
-            {!hasFriends && <CircleInformation text={participants.length}/>}
+            {hasFriends && <CircleInformation text={localParticipants.length}/>}
           </section>
-          <Button
-            buttonText="Participar"
-          />
+          {!isAdmin && (
+            <Button
+              buttonText="Participar"
+            />
+          )}
         </WrapperTop>
         {!hasFriends ? (
           <NoContent />
-        ) : (
-          <ParticipantsList  participants={participants} isAdmin={isAdmin}/>
+          ) : (
+            <>
+              {!isAdmin && (
+                <h3>Você foi convidado a participar desse amigo secreto:</h3>
+              )}
+              <ParticipantsList  participants={localParticipants} isAdmin={isAdmin}/>
+            </>
+            )}
+        {isAdmin && (
+          <Button
+            buttonText="Sortear"
+            image={drawImage}
+          />
         )}
       </ContentMiddle>
       <RoomCode code={`http://localhost:3000/secret/${id}`} />

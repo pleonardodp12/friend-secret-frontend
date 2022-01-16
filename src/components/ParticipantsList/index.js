@@ -10,7 +10,7 @@ export const ParticipantsList = (props) => {
     <Container>
       <List>
         {participants.map((participant) => (
-          <ListItem>
+          <ListItem key={participant.externalId}>
             <Friend>
               <Image src={avatarIcon} />
               {participant.name}

@@ -72,8 +72,12 @@ export const MainContainer = styled.div`
 `
 
 export const ContentMiddle = styled.div`
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   background-color: ${({ theme }) => theme.colors.primaryLight};
   > h3 {
     color: ${({ theme }) => theme.colors.dark }
@@ -91,6 +95,8 @@ export const WrapperTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 80%;
+  width: 980px;
   section {
     display: flex;
     align-items: center;
