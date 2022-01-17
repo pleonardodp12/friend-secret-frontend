@@ -1,32 +1,20 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.button`
-  height: 50px;
-  border-radius: 9px;
+  background-color: ${({ cancel, theme }) => cancel ? theme.colors.grayLight : theme.colors.red};
+  color: ${({ cancel, theme }) => cancel ? theme.colors.grayDark : theme.colors.primaryLight};
   width: 100%;
-  max-width: 320px;
-  font: 'Roboto', 500;
-  font-size: 20px;
-  background: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.light};
-  padding: 0 32px;
+  min-width: 132px;
+  height: 44px;
+  padding: 6px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  cursor: pointer;
-  border: 0;
-  transition: filter 0.2s;
-  margin: 16px 0;
-  div {
-    margin-right: 8px;
-  }
-
-  &:not(:disabled):hover {
-    filter: brightness(0.9);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  transition: opacity .2s;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
   }
 `

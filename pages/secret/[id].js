@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Button } from '../../src/components/Button'
-import { CircleInformation } from '../../src/components/CircleInformation'
-import { Header } from '../../src/components/Header'
-import { NoContent } from '../../src/components/NoContent'
-import { RoomCode } from '../../src/components/RoomCode'
-import { ParticipantsList } from '../../src/components/ParticipantsList'
+import {
+  PrimaryButton,
+  NoContent,
+  Header,
+  CircleInformation,
+  RoomCode,
+  ParticipantsList,
+  ModalRegisterFriend,
+} from '../../src/components'
 import drawImage from '../../public/img/draw.svg'
 import api from '../../src/services/api'
 
@@ -16,6 +19,7 @@ import {
 
 const Secret = ({ participants, hasDrew, isAdmin, id }) => {
   const [localParticipants, setLocalParticipants] = useState([])
+  const [registerParticipantModal, setRegisterParticipantModal] = useState(false)
 
   useEffect(() => {
     setLocalParticipants(participants)
@@ -32,11 +36,16 @@ const Secret = ({ participants, hasDrew, isAdmin, id }) => {
             {hasFriends && <CircleInformation text={localParticipants.length}/>}
           </section>
           {!isAdmin && (
-            <Button
-              buttonText="Participar"
+            <PrimaryButton
+              text="Participar"
+              onClick={() => setRegisterParticipantModal(true)}
             />
           )}
         </WrapperTop>
+        <ModalRegisterFriend
+          show={registerParticipantModal}
+          closeModal={() => setRegisterParticipantModal(false)}
+        />
         {!hasFriends ? (
           <NoContent />
           ) : (
@@ -44,12 +53,15 @@ const Secret = ({ participants, hasDrew, isAdmin, id }) => {
               {!isAdmin && (
                 <h3>Você foi convidado a participar desse amigo secreto:</h3>
               )}
-              <ParticipantsList  participants={localParticipants} isAdmin={isAdmin}/>
+              <ParticipantsList 
+                participants={localParticipants}
+                isAdmin={isAdmin}
+              />
             </>
             )}
         {isAdmin && (
-          <Button
-            buttonText="Sortear"
+          <PrimaryButton
+            text="Sortear"
             image={drawImage}
           />
         )}

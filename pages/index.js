@@ -2,10 +2,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import arrowRight from '../public/img/arrow-right.svg'
 import logo from '../public/img/logo.png'
-import { Button } from '../src/components/Button'
-import { Input } from '../src/components/Input'
-import { Separator } from '../src/components/Separator'
-import { CardNavigation } from '../src/components/CardsNavigation'
+import { PrimaryButton, Input, Separator, CardNavigation } from '../src/components'
 import api from '../src/services/api'
 import { useRouter } from 'next/router'
 
@@ -62,18 +59,18 @@ export default function HomePage () {
               name="nome"
               value={name}
               onChange={(e) => onChange(e, setName)}
-              placeholder="Digite aqui seu nome"
+              placeholder="Digite seu nome"
               required
             />
             <Input
               name="email"
               value={email}
               onChange={(e) => onChange(e, setEmail)}
-              placeholder="Digite aqui seu email"
+              placeholder="Digite seu email"
               required
             />
             <Separator text="Crie e chame seus amigos" />
-            <Button buttonText="Criar evento"/>
+            <PrimaryButton text="Criar evento"/>
           </FormContainer>
         ) : (
           <ButtonToEnter onClick={handleShowForm}>

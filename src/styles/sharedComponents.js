@@ -84,13 +84,6 @@ export const ContentMiddle = styled.div`
   }
 `
 
-export const ParticipantsList = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-
 export const WrapperTop = styled.div`
   display: flex;
   align-items: center;
