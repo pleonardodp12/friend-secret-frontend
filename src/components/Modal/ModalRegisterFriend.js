@@ -1,12 +1,15 @@
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { PrimaryButton, Button, Input } from '..'
 import { Modal } from './Modal'
 import monsterIcon from '../../../public/img/monster.png'
-import { ContainerModal, TitleModal, Form, ButtonsContainer } from "./styles"
+import { TitleModal, Form, ButtonsContainer } from "./styles"
+import api from '../../services/api'
 
 export const ModalRegisterFriend = (props) => {
-  const { show, closeModal } = props
+  const router = useRouter()
+  const { show, closeModal, registerAction } = props
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
@@ -17,11 +20,25 @@ export const ModalRegisterFriend = (props) => {
     }
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const { id } = router.query
+    const response = await api.post(`/secret/${id}/participants`, {
+      name,
+      email
+    })
+
+    if (response.data.success) {
+      setName('')
+      setEmail('')
+    }
+  }
+
   return (
     <Modal show={show}>
       <Image src={monsterIcon} />
       <TitleModal>Participar do amigo secreto?</TitleModal>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input
           name="nome"
           value={name}
@@ -36,11 +53,11 @@ export const ModalRegisterFriend = (props) => {
           placeholder="Digite seu email"
           required
         />
-      </Form>
       <ButtonsContainer>
-        <Button text="Canceclar" cancel onClick={closeModal}/>
-        <PrimaryButton text="Participar"/>
+        <Button text="Canceclar" cancel onClick={closeModal} />
+        <PrimaryButton text="Participar" onCLick={registerAction} type="submit" />
       </ButtonsContainer>
+      </Form>
     </Modal>
   )
 }

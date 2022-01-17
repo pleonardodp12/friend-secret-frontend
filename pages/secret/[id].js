@@ -19,10 +19,12 @@ import {
 
 const Secret = ({ participants, hasDrew, isAdmin, id }) => {
   const [localParticipants, setLocalParticipants] = useState([])
+  const [link, setLink] = useState('')
   const [registerParticipantModal, setRegisterParticipantModal] = useState(false)
 
   useEffect(() => {
     setLocalParticipants(participants)
+    setLink(`${window.location.origin}${window.location.pathname}`)
   }, [])
 
   const hasFriends = localParticipants.length > 0
@@ -66,7 +68,7 @@ const Secret = ({ participants, hasDrew, isAdmin, id }) => {
           />
         )}
       </ContentMiddle>
-      <RoomCode code={`http://localhost:3000/secret/${id}`} />
+      <RoomCode code={link} />
     </MainContainer>
   )
 }

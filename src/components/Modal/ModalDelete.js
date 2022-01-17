@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Button } from '..'
 import deleteIcon from '../../../public/img/delete.svg'
 import { Modal } from './Modal'
-import { ContainerModal, TitleModal, Text, ButtonsContainer } from "./styles"
+import { TitleModal, Text, ButtonsContainer } from "./styles"
 
 export const ModalDelete = (props) => {
   const { show, closeModal, deleteAction } = props
