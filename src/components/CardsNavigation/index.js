@@ -28,7 +28,7 @@ const cards = [
   }
 ]
 
-export const CardNavigation = () => {
+export const CardsNavigation = () => {
   const [indexCard, setIndexCard] = useState(1)
   const [showCard, setShowCard] = useState(cards[0])
 

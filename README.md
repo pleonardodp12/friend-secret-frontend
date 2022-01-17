@@ -6,3 +6,4 @@
 - Animações na hora do draw
 - Componente de loading
 - Toast de sucesso e erro
+- Validações dos formulários

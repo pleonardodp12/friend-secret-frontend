@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import arrowRight from '../public/img/arrow-right.svg'
 import logo from '../public/img/logo.png'
-import { PrimaryButton, Input, Separator, CardNavigation } from '../src/components'
+import { PrimaryButton, Input, Separator, CardsNavigation } from '../src/components'
 import api from '../src/services/api'
 import { useRouter } from 'next/router'
 
@@ -47,7 +47,7 @@ export default function HomePage () {
   return (
     <Container>
       <aside>
-        <CardNavigation />
+        <CardsNavigation />
         <h2>Faça um amigo oculto automático.</h2>
         <span>compartilhe com seus amigos e divirta-se!</span>
       </aside>
